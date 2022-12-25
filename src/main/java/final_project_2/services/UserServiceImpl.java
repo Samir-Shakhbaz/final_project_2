@@ -4,6 +4,8 @@ import final_project_2.models.User;
 import final_project_2.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -32,4 +34,9 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public void deleteUser(Long id) { userRepository.deleteById(id); }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByName(username);
+    }
 }

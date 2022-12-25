@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Answer Manager</title>
+</head>
+<body>
+<div align="center">
+
+    <h1>Answers</h1>
+    <a th:href="@{/nik/tests}">Return to Homepage</a><br/>
+    <br/><br/>
+<!--    <form action="#" th:action="@{/submitAnswer}" th:object="${answer}" method="post">-->
+    <br>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Answer ID</th>
+            <th>Answer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${answerList}">
+            <td th:text="${answer.id}">Answer ID</td>
+            <td th:text="${answer.Name}">Answer</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
