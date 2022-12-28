@@ -6,11 +6,14 @@ import final_project_2.services.AnswerService;
 import final_project_2.services.TestService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -22,13 +25,20 @@ public class AnswerController {
     @Autowired
     AnswerService answerService;
 
-    @PostMapping(value = "/submitAnswer")
-    // As the Model is received back from the view, @ModelAttribute
-    // creates a Customer based on the object you collected from
-    // the HTML page above
-    public String saveAnswer(@ModelAttribute("answer") Answer answer) {
-        answerService.saveAnswers(answer);
+    @PostMapping(value = "/submitAnswer", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+     public String saveAnswer(@RequestParam MultiValueMap<String, String> values, HttpServletRequest request) {
+
+//        System.out.println(values.keySet());
+//
+//        System.out.println(values);
+        for(String questionId:values.keySet()){
+//            System.out.println(questionId);
+            System.out.println(values.get(questionId).get(0));
+
+        }
+//        System.out.println(request);
         return "answers";
+
     }
 
 }

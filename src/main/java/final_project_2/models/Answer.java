@@ -19,10 +19,16 @@ public class Answer {
 
     long id;
     String name;
+    int correctAnswers[];
+    //correct answers boolean
 
     @ManyToOne
     @JoinColumn (name = "question_id")
     private Question question;
+
+    public int[] getCorrectAnswers() {
+        return correctAnswers;
+    }
 
     public Answer(long id, String name) {
         this.id = id;

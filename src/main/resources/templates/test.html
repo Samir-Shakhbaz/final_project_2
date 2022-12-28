@@ -49,7 +49,15 @@
                 <tr th:each="answer : ${question.answers}">
                     <td th:text="${answer.id}"></td>
 <!--                    <td th:text="${answer.name}"></td>-->
-                    <td><input type="radio" th:id="'formName' + ${question.id} + '-' + ${answer.id}" th:name="'formName' + ${question.id}" th:text="${answer.name}" value="HTML"></td>
+                    <td>
+                        <input type="radio"
+                               th:id="${answer.id}"
+                               th:name="${question.id}"
+                               th:text="${answer.name}"
+                               th:value="${answer.id}"
+                               value="HTML">
+                        <label th:text="'(' + ${answer.id} + ') ' + ${answer.name}"/>
+                    </td>
 <!--                           th:text="${answer.name}"><br>-->
                 </tr>
 
