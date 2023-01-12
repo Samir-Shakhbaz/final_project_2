@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Question</title>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Question</h1>
+    <br />
+    <form action="#" th:action="@{/savequestion}" th:object="${question}" method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Question id:</td>
+                <td><input type="text" th:field="*{id}" required/></td>
+            </tr>
+            <tr>
+                <td>Question Name:</td>
+                <td><input type="text" th:field="*{name}" required/></td>
+            </tr>
+        </table>
+            <tr>
+            <td colspan="2"><button type="save">Save</button> </td>
+            </tr>
+    </form>
+
+</body>
+</html>

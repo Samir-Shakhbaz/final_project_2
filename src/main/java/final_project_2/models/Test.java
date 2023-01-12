@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Table(name = "tests")
 @Builder
 @Getter
@@ -22,16 +22,20 @@ public class Test {
     private String name;
 
 
-    @OneToMany(mappedBy = "test")
-    private List<Question> questions;
+//    @OneToMany(mappedBy = "test")
+//    private List<Question> questions;
+
+    @OneToMany
+    private List <Question> questions;
 
 
-//    public Test(Long id, String name, List<Question> questions) {
-//        this.id = id;
-//        this.name = name;
-//        this.questions = questions;
+    public Test(Long id, String name, List<Question> questions) {
+        this.id = id;
+        this.name = name;
+        this.questions = questions;
 
     }
+}
 
 
 

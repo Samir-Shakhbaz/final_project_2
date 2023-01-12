@@ -7,8 +7,28 @@ body {
 
 }
 
+
+table {
+  table-layout: fixed ;
+  width: 25% ;
+}
+td {
+  width: 25% ;
+}
+
+
+body {
+  background-image:url('images/JavaLogo.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+
 /*body {
     background-image:url('images/WhiteHouse.jpg');\
     color:white;
 }
-/*
+*/
+
+

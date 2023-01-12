@@ -1,9 +1,11 @@
 package final_project_2.controllers;
 
 import final_project_2.models.Answer;
+import final_project_2.models.Question;
 import final_project_2.models.User;
+//import final_project_2.services.AnswerService;
+
 import final_project_2.services.AnswerService;
-import final_project_2.services.TestService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,6 +26,19 @@ public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+
+    @PostMapping(value = "/saveanswer")
+    public String saveQuestion(@ModelAttribute("answer") Answer answer) {
+        answerService.saveAnswer(answer);
+        return "answer-list";
+    }
+
+    @GetMapping("new-answer")
+    public String ShowNewAnswerPage(Model model) {
+        Answer answer = new Answer();
+        model.addAttribute("answer", answer);
+        return "new-answer";
+    }
 
     @PostMapping(value = "/submitAnswer", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
      public String saveAnswer(@RequestParam MultiValueMap<String, String> values, HttpServletRequest request) {

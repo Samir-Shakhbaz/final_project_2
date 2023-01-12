@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Question Manager</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <div align="center">
@@ -37,7 +38,16 @@
     <a th:href="@{/createaccount}">Create an account</a>
     </br></br>
     </br>
-    <a th:href="@{/logout}">Log in</a>
+    <a th:href="@{/logout}">Log out</a>
+    </br></br>
+    </br>
+    <a th:href="@{/new-test}">Create new test</a>
+    </br></br>
+    </br>
+    <a th:href="@{/new-question}">Create new question</a>
+    </br></br>
+    </br>
+    <a th:href="@{/new-answer}">Create new answer</a>
     </br></br>
     <form id="form">
         <input type="search" id="query" name="q" placeholder="Search...">

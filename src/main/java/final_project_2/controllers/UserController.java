@@ -1,7 +1,8 @@
 package final_project_2.controllers;
 
 import final_project_2.models.User;
-import final_project_2.services.TestService;
+//import final_project_2.services.TestService;
+import final_project_2.services.NewTestService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,10 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    TestService testService;
+    NewTestService newTestService;
+
+//    @Autowired
+//    TestService testService;
 
     @Autowired
     private final UserService userService;

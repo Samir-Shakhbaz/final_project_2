@@ -3,7 +3,9 @@ package final_project_2.controllers;
 import final_project_2.models.Answer;
 import final_project_2.models.Question;
 import final_project_2.models.Test;
-import final_project_2.services.TestService;
+import final_project_2.services.AnswerService;
+//import final_project_2.services.TestService;
+import final_project_2.services.NewTestService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,14 @@ import java.util.List;
 //@RestController
 public class TestController {
 
+//    @Autowired
+//    TestService testService;
+
     @Autowired
-    TestService testService;
+    NewTestService newTestService;
+
+    @Autowired
+    AnswerService answerService;
 
     @Autowired
     private final UserService userService;
@@ -35,14 +43,40 @@ public class TestController {
 //    }
 //
 //
-//    @GetMapping("/")
-//    public String vewHomePage(Model model) {
-//        // Here you call the service to retrieve all the customers
-//        final List<Test> testList = testService.getAllTests();
-//        // Once the customers are retrieved, you can store them in model and return it to the view
-//        model.addAttribute("testList", testList);
-//        return "index";
-//    }
+
+    @GetMapping("/test-list")
+    public String vewTestList(Model model) {
+        // Here you call the service to retrieve all the customers
+        final List<Test> testList = newTestService.getAllTests();
+        // Once the customers are retrieved, you can store them in model and return it to the view
+        model.addAttribute("testList", testList);
+        return "test-list";
+    }
+
+    @PostMapping(value = "/savetest")
+    // As the Model is received back from the view, @ModelAttribute
+    // creates a Customer based on the object you collected from
+    // the HTML page above
+    public String saveTest(@ModelAttribute("test") Test test) {
+        newTestService.saveTest(test);
+        return "redirect:/test-list";
+    }
+
+    @GetMapping("/new-test")
+    public String ShowNewTestPage(Model model) {
+        Test test = new Test();
+        model.addAttribute("test", test);
+        return "new-test";
+    }
+
+    @GetMapping("/")
+    public String vewHomePage(Model model) {
+        // Here you call the service to retrieve all the customers
+        final List<Test> testList = newTestService.getAllTests();
+        // Once the customers are retrieved, you can store them in model and return it to the view
+        model.addAttribute("testList", testList);
+        return "home";
+    }
 
 
     @GetMapping("/hello")
@@ -61,29 +95,31 @@ public class TestController {
     public String getTestsPage(Model model) {
 
         // <Type of object> <name> = ... <something that return >
-        List<Test> tests = testService.getAllTests(); // == new Test(1l, "Test 1", questions())
+        List<Test> tests = newTestService.getAllTests(); // == new Test(1l, "Test 1", questions())
 
         model.addAttribute("allTests", tests);
 
         return "tests";
     }
 
-    @GetMapping("/nik/tests/{id}")
-    public String getTestPage(Model model, @PathVariable Integer id) {
-
-        // <Type of object> <name> = ... <something that return >
-        Test test = testService.get(id); // == new Test(1l, "Test 1", questions())
-
-        model.addAttribute("testObject", test);
-
-       return "test";
-    }
+//    @GetMapping("/nik/tests/{id}")
+//    public String getTestPage(Model model, @PathVariable Integer id) {
+//
+//        // <Type of object> <name> = ... <something that return >
+//        Test test = newTestService.get(id); // == new Test(1l, "Test 1", questions())
+//        Answer answer = answerService.get(id);
+//
+//        model.addAttribute("testObject", test);
+//        model.addAttribute("answer", answer);
+//
+//       return "test";
+//    }
 
     @GetMapping("/testQ")
     public String getTestsPageQ(Model model) {
 
         // <Type of object> <name> = ... <something that return >
-        List<Test> tests = testService.getAllTests(); // == new Test(1l, "Test 1", questions())
+        List<Test> tests = newTestService.getAllTests(); // == new Test(1l, "Test 1", questions())
 
         model.addAttribute("allTests", tests);
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Manager</title>
+</head>
+<body>
+    <div align="center">
+
+        <h1>Test List</h1>
+
+        <br/><br/>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>Test Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="test : ${testList}">
+                <td th:text="${test.id}">Test ID</td>
+                <td th:text="${test.name}">Test Name</td>
+                <td>    <!-- actions -->
+                    <a th:href="@{'/edit/' + ${test.id}}">Edit</a>
+                    <a th:href="@{'/delete/' + ${test.id}}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

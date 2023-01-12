@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Table(name = "questions")
 @Builder
 @Getter
@@ -23,13 +23,13 @@ public class Question {
     private String name;
 
 
-    @ManyToOne
-    @JoinColumn (name = "test_id")
-    private Test test;
-
-    @OneToMany(mappedBy = "question")
-    private List<Answer> answers;
-    // correct answer id
+//    @ManyToOne
+//    @JoinColumn (name = "test_id")
+//    private Test test;
+//
+//    @OneToMany(mappedBy = "question")
+//    private List<Answer> answers;
+//    // correct answer id
 
 
 
@@ -41,5 +41,9 @@ public class Question {
 
     public Question(String hello) {
     }
+
+    @OneToMany
+    private List <Answer> answers;
+
 }
 
