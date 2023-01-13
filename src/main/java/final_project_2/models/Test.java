@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 //@AllArgsConstructor
 @Table(name = "tests")
-@Builder
+//@Builder
 @Getter
 @Setter
 public class Test {
@@ -25,8 +25,12 @@ public class Test {
 //    @OneToMany(mappedBy = "test")
 //    private List<Question> questions;
 
-    @OneToMany
+//    @OneToMany
+//    @JoinColumn(name = "question_id")
     private List <Question> questions;
+
+    @OneToMany(mappedBy = "test")
+    private Question question;
 
 
     public Test(Long id, String name, List<Question> questions) {

@@ -23,7 +23,25 @@
             <tr>
             <td colspan="2"><button type="save">Save</button> </td>
             </tr>
+        <tr>
+            <td>Assign Test:
+                <select class="form-select" name="testId">
+<!--                    <option th:if="${questionList.isEmpty()}">None Available</option>-->
+                    <option th:each="test : ${testList}" th:value="${test.id}" th:text="${test.toString()}"></option>
+                </select></td>
+        </tr>
     </form>
-
+        </br>
+            <a th:href="@{/test-list}">Go to test-list</a>
+        </br>
+        </br>
+            <a th:href="@{/question-list}">Go to question-list</a>
+        </br>
+        </br>
+            <a th:href="@{/answer-list}">Go to answer-list</a>
+        </br>
+        </br>
+            <a th:href="@{/}">Return to homepage</a>
+        </br>
 </body>
 </html>

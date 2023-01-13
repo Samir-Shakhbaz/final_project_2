@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Answer Manager</title>
+  <link th:href="@{/css/styleAnswer.css}" rel="stylesheet"/>
 </head>
 <body>
 <div align="center">
@@ -23,12 +24,21 @@
       <td th:text="${answer.id}">Answer ID</td>
       <td th:text="${answer.name}">Answer Name</td>
       <td>    <!-- actions -->
-        <a th:href="@{'/edit/' + ${question.id}}">Edit</a>
-        <a th:href="@{'/delete/' + ${question.id}}">Delete</a>
+        <a th:href="@{'/editanswer/' + ${answer.id}}">Edit</a>
+        <a th:href="@{'/deleteanswer/' + ${answer.id}}">Delete</a>
       </td>
     </tr>
     </tbody>
   </table>
+    </br>
+      <a th:href="@{/test-list}">Go to test-list</a>
+    </br>
+    </br>
+      <a th:href="@{/question-list}">Go to question-list</a>
+    </br>
+    </br>
+      <a th:href="@{/}">Return to homepage</a>
+    </br>
 </div>
 </body>
 </html>

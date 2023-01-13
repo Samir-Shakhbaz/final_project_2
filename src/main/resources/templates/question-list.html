@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Question Manager</title>
+    <link th:href="@{/css/style3.css}" rel="stylesheet"/>
 </head>
 <body>
 <div align="center">
@@ -23,12 +24,23 @@
             <td th:text="${question.id}">Question ID</td>
             <td th:text="${question.name}">Question Name</td>
             <td>    <!-- actions -->
-                <a th:href="@{'/edit/' + ${question.id}}">Edit</a>
-                <a th:href="@{'/delete/' + ${question.id}}">Delete</a>
+                <a th:href="@{'/editquestion/' + ${question.id}}">Edit</a>
+                <a th:href="@{'/deletequestion/' + ${question.id}}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
+    </br>
+    <a th:href="@{/test-list}">Go to test-list</a>
+    </br>
+    </br>
+    <a th:href="@{/answer-list}">Go to answer-list</a>
+    </br>
+    </br>
+        <a th:href="@{/}">Return to homepage</a>
+    </br>
+
 </div>
+
 </body>
 </html>

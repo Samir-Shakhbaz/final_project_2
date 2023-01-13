@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 //@AllArgsConstructor
 @Table(name = "questions")
-@Builder
+//@Builder
 @Getter
 @Setter
 public class Question {
@@ -41,6 +41,14 @@ public class Question {
 
     public Question(String hello) {
     }
+
+
+//    @ManyToOne
+//    private Test test;
+
+    @ManyToOne
+    @JoinColumn (name = "test_id")
+    private Test test;
 
     @OneToMany
     private List <Answer> answers;

@@ -18,19 +18,33 @@ public class AnswerService {
     @Autowired
     AnswerRepository answerRepository;
 
-    public List<Answer> getAllTests() {
-        return answers;
+    public List<Answer> getAllAnswers() {
+        return answerRepository.findAll();
     }
 
     private List<Answer> answers;
-    @Transactional
-    public Answer saveAnswer(Answer answer){return answerRepository.save(answer);}
 
+    @Transactional
+    public Answer saveAnswer(Answer answer) {
+        return answerRepository.save(answer);
+    }
 
     public AnswerService() {
         List<Answer> list = new ArrayList<>();
         Answer answer = new Answer();
         answer.setId(1l);
+    }
+
+    public Answer getAnswer(Long id) {
+        return answerRepository.findById(id)
+                .orElse(null);
+    }
+
+    public void deleteAnswer(Long id) {
+        answerRepository.deleteById(id);
+    }
+
+}
 
 //    public Answer get(Integer id){
 //        return getAllAnswers().get(id-1);
@@ -53,12 +67,5 @@ public class AnswerService {
 //    List<Answer> getAllAnswers() {
 //        return getAllAnswers();
 //    }
-
-    }
-
-    public Answer get(Integer id) {
-        return getAllTests().get(id - 1);
-    }
-}
 
 

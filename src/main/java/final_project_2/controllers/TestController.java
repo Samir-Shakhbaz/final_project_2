@@ -6,11 +6,13 @@ import final_project_2.models.Test;
 import final_project_2.services.AnswerService;
 //import final_project_2.services.TestService;
 import final_project_2.services.NewTestService;
+import final_project_2.services.QuestionService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,9 @@ public class TestController {
 
     @Autowired
     NewTestService newTestService;
+
+    @Autowired
+    QuestionService questionService;
 
     @Autowired
     AnswerService answerService;
@@ -69,6 +74,32 @@ public class TestController {
         return "new-test";
     }
 
+    @GetMapping("/edittest/{id}")
+    public ModelAndView showEditTestPage(@PathVariable(name = "id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("edit-test");
+        Test test = newTestService.getTest(id);
+        modelAndView.addObject("test", test);
+        return modelAndView;
+    }
+
+    @PostMapping("/updatetest/{id}")
+    public String updateTest(@PathVariable(name = "id") Long id, @ModelAttribute("test") Test test, Model model) {
+        if (!id.equals(test.getId())) {
+            model.addAttribute("message",
+                    "Cannot update, test id " + test.getId()
+                            + " doesn't match id to be updated: " + id + ".");
+            return "error-page";
+        }
+        newTestService.saveTest(test);
+        return "redirect:/test-list";
+    }
+
+    @RequestMapping("/deletetest/{id}")
+    public String deleteTest(@PathVariable(name = "id") Long id) {
+        newTestService.deleteTest(id);
+        return "redirect:/test-list";
+    }
+
     @GetMapping("/")
     public String vewHomePage(Model model) {
         // Here you call the service to retrieve all the customers
@@ -77,6 +108,18 @@ public class TestController {
         model.addAttribute("testList", testList);
         return "home";
     }
+
+    @GetMapping("/test/assign/{id}")
+    public String assignTest(@PathVariable(name="id") Long id, Model model){
+        Question question = questionService.getQuestion(id);
+
+        List<Test> testList = newTestService.getAvailableTest();
+        model.addAttribute("question", question);
+        model.addAttribute("testList", testList);
+        return "new-question";
+
+    }
+
 
 
     @GetMapping("/hello")

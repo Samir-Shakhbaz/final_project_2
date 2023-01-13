@@ -14,6 +14,12 @@ public interface NewTestService {
 
     List<Test> saveAllTests(List<Test> testList);
 
+    Test getTest(Long id);
+
+    void deleteTest(Long id);
+
+    public List<Test> getAvailableTest();
+
 //    Test get(Integer id);
 
 }

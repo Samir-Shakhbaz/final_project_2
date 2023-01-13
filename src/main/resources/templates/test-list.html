@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Test Manager</title>
+    <link th:href="@{/css/style2.css}" rel="stylesheet"/>
 </head>
 <body>
     <div align="center">
@@ -23,12 +24,22 @@
                 <td th:text="${test.id}">Test ID</td>
                 <td th:text="${test.name}">Test Name</td>
                 <td>    <!-- actions -->
-                    <a th:href="@{'/edit/' + ${test.id}}">Edit</a>
-                    <a th:href="@{'/delete/' + ${test.id}}">Delete</a>
+                    <a th:href="@{'/edittest/' + ${test.id}}">Edit</a>
+                    <a th:href="@{'/deletetest/' + ${test.id}}">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
+            </br>
+                <a th:href="@{/question-list}">Go to question-list</a>
+            </br>
+            </br>
+                <a th:href="@{/answer-list}">Go to answer-list</a>
+            </br>
+            </br>
+                <a th:href="@{/}">Return to homepage</a>
+            </br>
     </div>
+
 </body>
 </html>
