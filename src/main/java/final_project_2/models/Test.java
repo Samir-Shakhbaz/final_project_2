@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,23 +22,13 @@ public class Test {
     private Long id;
     private String name;
 
-
-//    @OneToMany(mappedBy = "test")
-//    private List<Question> questions;
-
-//    @OneToMany
-//    @JoinColumn(name = "question_id")
-    private List <Question> questions;
-
-    @OneToMany(mappedBy = "test")
+    @OneToOne(mappedBy = "test")
     private Question question;
 
-
-    public Test(Long id, String name, List<Question> questions) {
+        public Test(Long id, String name, List<Question> questions) {
         this.id = id;
         this.name = name;
-        this.questions = questions;
-
+        this.question = question;
     }
 }
 

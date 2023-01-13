@@ -20,16 +20,18 @@
                 <td><input type="text" th:field="*{name}" required/></td>
             </tr>
         </table>
-            <tr>
-            <td colspan="2"><button type="save">Save</button> </td>
-            </tr>
-        <tr>
+
             <td>Assign Test:
                 <select class="form-select" name="testId">
-<!--                    <option th:if="${questionList.isEmpty()}">None Available</option>-->
+<!--                    <option th:if="${testList.isEmpty()}">None Available</option>-->
                     <option th:each="test : ${testList}" th:value="${test.id}" th:text="${test.toString()}"></option>
                 </select></td>
         </tr>
+        </br></br>
+        <tr>
+            <td colspan="2"><button type="save">Save</button> </td>
+        </tr>
+        <tr>
     </form>
         </br>
             <a th:href="@{/test-list}">Go to test-list</a>

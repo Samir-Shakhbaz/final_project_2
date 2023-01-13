@@ -20,6 +20,4 @@ public interface NewTestService {
 
     public List<Test> getAvailableTest();
 
-//    Test get(Integer id);
-
 }

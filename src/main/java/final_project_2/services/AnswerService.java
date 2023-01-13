@@ -46,26 +46,3 @@ public class AnswerService {
 
 }
 
-//    public Answer get(Integer id){
-//        return getAllAnswers().get(id-1);
-//    }
-//
-//    public void checkAnswer(){
-//
-//        int[] correctAnswer = {3,5,9,11,22};
-//        boolean contains = IntStream.of(correctAnswer).anyMatch(x -> x == 5);
-//        System.out.println(contains);
-//    }
-//
-//
-//    @Autowired
-//    AnswerRepository answerRepository;
-//
-//    public Answer saveAnswers(Answer answer) {
-//        return answerRepository.save(answer);
-//    }
-//    List<Answer> getAllAnswers() {
-//        return getAllAnswers();
-//    }
-
-

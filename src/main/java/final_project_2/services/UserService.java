@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service //CHANGED INTERFACE TO CLASS TO FIX consider defining a bean of type
+@Service
 @Component
 public interface UserService extends UserDetailsService {
 

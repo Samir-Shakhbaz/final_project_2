@@ -18,14 +18,11 @@ public class QuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
-//    @Autowired
-//    NewTestService newTestService;
-
     public List<Question> getAllQuestions() {
         return questionRepository.findAll();
     }
 
-     public Question saveQuestion(Question question) {
+    public Question saveQuestion(Question question) {
         return questionRepository.save(question);
     }
     List<Question> saveAllQuestion(List<Question> questionList){ return questionRepository.saveAll(questionList); }
@@ -35,10 +32,10 @@ public class QuestionService {
                 .orElse(null);
     }
 
-    public List<Question> getAvailableQuestion() {
-        return getAllQuestions().stream().filter(c -> c.getTest() == null)
-                .collect(Collectors.toList());
-    }
+//    public List<Question> getAvailableQuestion() {
+//        return getAllQuestions().stream().filter(c -> c.getTest() == null)
+//                .collect(Collectors.toList());
+//    }
 
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);

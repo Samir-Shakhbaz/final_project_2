@@ -32,7 +32,7 @@ public class QuestionController {
     }
 
     @GetMapping("/question-list")
-    public String showQuestionListPage(Model model){
+    public String showQuestionListPage(Model model) {
         List<Question> questionList = questionService.getAllQuestions();
         model.addAttribute("questionList", questionList);
         return "question-list";
@@ -45,6 +45,7 @@ public class QuestionController {
         modelAndView.addObject("question", question);
         return modelAndView;
     }
+
     @PostMapping("/updatequestion/{id}")
     public String updateQuestion(@PathVariable(name = "id") Long id, @ModelAttribute("question") Question question, Model model) {
         if (!id.equals(question.getId())) {
@@ -62,5 +63,4 @@ public class QuestionController {
         questionService.deleteQuestion(id);
         return "redirect:/question-list";
     }
-
 }

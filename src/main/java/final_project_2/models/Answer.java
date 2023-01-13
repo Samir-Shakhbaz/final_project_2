@@ -18,15 +18,9 @@ public class Answer {
 
     long id;
     String name;
-    //correct answers boolean
-
-//    @ManyToOne
-//    @JoinColumn (name = "question_id")
-//    private Question question;
 
     public Answer(long id, String name) {
         this.id = id;
         this.name = name;
-
     }
 }

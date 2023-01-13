@@ -19,8 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-
-//@Transactional
 @Controller
 @Component
 public class AnswerController {
@@ -35,7 +33,7 @@ public class AnswerController {
     }
 
     @GetMapping("/answer-list")
-    public String showAnswerListPage(Model model){
+    public String showAnswerListPage(Model model) {
         List<Answer> answerList = answerService.getAllAnswers();
         model.addAttribute("answerList", answerList);
         return "answer-list";
@@ -75,19 +73,11 @@ public class AnswerController {
     }
 
     @PostMapping(value = "/submitAnswer", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-     public String saveAnswer(@RequestParam MultiValueMap<String, String> values, HttpServletRequest request) {
+    public String saveAnswer(@RequestParam MultiValueMap<String, String> values, HttpServletRequest request) {
 
-//        System.out.println(values.keySet());
-//
-//        System.out.println(values);
-        for(String questionId:values.keySet()){
-//            System.out.println(questionId);
+        for (String questionId : values.keySet()) {
             System.out.println(values.get(questionId).get(0));
-
         }
-//        System.out.println(request);
         return "answers";
-
     }
-
 }

@@ -22,36 +22,17 @@ public class Question {
     private Long id;
     private String name;
 
-
-//    @ManyToOne
-//    @JoinColumn (name = "test_id")
-//    private Test test;
-//
-//    @OneToMany(mappedBy = "question")
-//    private List<Answer> answers;
-//    // correct answer id
-
-
-
     public Question(Long id, String name, List<Answer> answers) {
         this.id = id;
         this.name = name;
         this.answers = answers;
     }
 
-    public Question(String hello) {
-    }
-
-
-//    @ManyToOne
-//    private Test test;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn (name = "test_id")
     private Test test;
 
     @OneToMany
     private List <Answer> answers;
-
 }
 
