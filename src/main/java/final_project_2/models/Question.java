@@ -25,14 +25,20 @@ public class Question {
     public Question(Long id, String name, List<Answer> answers) {
         this.id = id;
         this.name = name;
-        this.answers = answers;
+//        this.answers = answers;
     }
 
     @OneToOne
     @JoinColumn (name = "test_id")
     private Test test;
 
-    @OneToMany
-    private List <Answer> answers;
+    @OneToOne(mappedBy = "question")
+    private Answer answer;
+
+    @Override
+    public String toString() { return ("Question# " + id + " " + " " + name);}
+
+    //    @OneToMany
+//    private List <Answer> answers;
 }
 

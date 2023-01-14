@@ -8,6 +8,7 @@ import final_project_2.services.AnswerService;
 import final_project_2.services.NewTestService;
 import final_project_2.services.QuestionService;
 import final_project_2.services.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,7 @@ public class TestController {
     }
 
     @GetMapping("/test-list")
-    public String vewTestList(Model model) {
+    public String vewTestList(@NotNull Model model) {
         final List<Test> testList = newTestService.getAllTests();
         model.addAttribute("testList", testList);
         return "test-list";
@@ -96,7 +97,7 @@ public class TestController {
         List<Test> testList = newTestService.getAvailableTest();
         model.addAttribute("question", question);
         model.addAttribute("testList", testList);
-        return "question-list";
+        return "assign-test";
     }
 
     @PostMapping("test/assign")
@@ -104,7 +105,7 @@ public class TestController {
         Test test = newTestService.getTest(testId);
         test.setQuestion(questionService.getQuestion(questionId));
         newTestService.saveTest(test);
-        return "redirect:/test-list";
+        return "redirect:/question-list";
     }
 
     @GetMapping("/hello")

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Answer Manager</title>
@@ -16,6 +17,7 @@
     <tr>
       <th>Answer ID</th>
       <th>Answer Name</th>
+      <th>Question Id</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -23,13 +25,21 @@
     <tr th:each="answer : ${answerList}">
       <td th:text="${answer.id}">Answer ID</td>
       <td th:text="${answer.name}">Answer Name</td>
+      <td th:text="${answer.question}">Question Id</td>
       <td>    <!-- actions -->
         <a th:href="@{'/editanswer/' + ${answer.id}}">Edit</a>
         <a th:href="@{'/deleteanswer/' + ${answer.id}}">Delete</a>
+        <a th:text="${(answer.question == null) ? 'Assign Question' : ''}"
+           th:href="@{'/question/assign/' + ${answer.id}}"></a>
+        <a th:text="${(answer.question != null) ? 'Remove Question' : ''}"
+           th:href="${(answer.question != null) ? + '/remove/' + answer.question.getId() : ''}"></a>
       </td>
     </tr>
     </tbody>
   </table>
+    </br>
+      <a th:href="@{/new-answer}">Create new answer</a>
+    </br>
     </br>
       <a th:href="@{/test-list}">Go to test-list</a>
     </br>

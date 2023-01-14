@@ -30,6 +30,18 @@ public class Test {
         this.name = name;
         this.question = question;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Test{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                '}';
+//    }
+
+    @Override
+    public String toString() { return ("Test#" + id + " " + " " + name);}
+
 }
 
 

@@ -16,6 +16,7 @@
             <tr>
                 <th>Test ID</th>
                 <th>Test Name</th>
+<!--                <th>Question Id</th>-->
                 <th>Actions</th>
             </tr>
             </thead>
@@ -23,6 +24,7 @@
             <tr th:each="test : ${testList}">
                 <td th:text="${test.id}">Test ID</td>
                 <td th:text="${test.name}">Test Name</td>
+<!--                <td th:text="${test.question != null} ? ${test.question.id}"></td>-->
                 <td>    <!-- actions -->
                     <a th:href="@{'/edittest/' + ${test.id}}">Edit</a>
                     <a th:href="@{'/deletetest/' + ${test.id}}">Delete</a>
@@ -30,6 +32,9 @@
             </tr>
             </tbody>
         </table>
+            </br>
+                <a th:href="@{/new-test}">Create new test</a>
+            </br>
             </br>
                 <a th:href="@{/question-list}">Go to question-list</a>
             </br>

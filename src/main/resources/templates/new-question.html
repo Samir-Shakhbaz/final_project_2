@@ -21,11 +21,6 @@
             </tr>
         </table>
 
-            <td>Assign Test:
-                <select class="form-select" name="testId">
-<!--                    <option th:if="${testList.isEmpty()}">None Available</option>-->
-                    <option th:each="test : ${testList}" th:value="${test.id}" th:text="${test.toString()}"></option>
-                </select></td>
         </tr>
         </br></br>
         <tr>

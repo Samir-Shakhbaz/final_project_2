@@ -1,9 +1,11 @@
 package final_project_2.services;
 
 import final_project_2.models.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface NewTestService {
 
@@ -21,3 +23,4 @@ public interface NewTestService {
     public List<Test> getAvailableTest();
 
 }
+

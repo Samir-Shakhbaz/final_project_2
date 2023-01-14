@@ -52,6 +52,11 @@ public class UserController {
         return "deleted";
     }
 
+    @GetMapping("/about")
+        public String about(){
+        return "about";
+    }
+
 //    @RequestMapping("/delete/{id}") //FOR ADMINISTRATOR
 //    public String deleteUser(@PathVariable(name = "id") Long id) {
 //        userService.deleteUser(id);

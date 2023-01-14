@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "answers")
-@Builder
+//@Builder
 @Getter
 @Setter
 public class Answer {
@@ -23,4 +23,9 @@ public class Answer {
         this.id = id;
         this.name = name;
     }
+
+    @OneToOne
+    @JoinColumn (name = "question_id")
+    private Question question;
+
 }

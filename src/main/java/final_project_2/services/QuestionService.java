@@ -22,6 +22,8 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
+
+    @Transactional
     public Question saveQuestion(Question question) {
         return questionRepository.save(question);
     }
@@ -30,6 +32,11 @@ public class QuestionService {
     public Question getQuestion(Long id) {
         return questionRepository.findById(id)
                 .orElse(null);
+    }
+
+    public List<Question> getAvailableQuestion() {
+        return getAllQuestions().stream().filter(c -> c.getAnswer() == null)
+                .collect(Collectors.toList());
     }
 
 //    public List<Question> getAvailableQuestion() {
