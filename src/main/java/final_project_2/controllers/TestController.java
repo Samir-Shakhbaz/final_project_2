@@ -8,6 +8,7 @@ import final_project_2.services.AnswerService;
 import final_project_2.services.NewTestService;
 import final_project_2.services.QuestionService;
 import final_project_2.services.UserService;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -103,9 +104,20 @@ public class TestController {
     @PostMapping("test/assign")
     public String saveTestAssignment(@RequestParam("questionId") Long questionId, @RequestParam("testId") Long testId) {
         Test test = newTestService.getTest(testId);
-        test.setQuestion(questionService.getQuestion(questionId));
-        newTestService.saveTest(test);
+        Question question = questionService.getQuestion(questionId);
+//        test.setQuestion(question);
+//        newTestService.saveTest(test);
+        question.setTest(test);
+        questionService.saveQuestion(question);
         return "redirect:/question-list";
+    }
+
+    @RequestMapping("remove/{id}")
+    public String removeQuestion(@PathVariable(name = "id") Long questionId) {
+        Question question = questionService.getQuestion(questionId);
+        question.setTest(null);
+        questionService.saveQuestion(question);
+        return"redirect:/question-list";
     }
 
     @GetMapping("/hello")
@@ -125,14 +137,14 @@ public class TestController {
         return "tests";
     }
 
-//    @GetMapping("/nik/tests/{id}")
-//    public String getTestPage(Model model, @PathVariable Integer id) {
-//       Test test = newTestService.get(id);
-//       Answer answer = answerService.get(id);
-//       model.addAttribute("testObject", test);
-//       model.addAttribute("answer", answer);
-//       return "test";
-//    }
+    @GetMapping("/nik/tests/{id}")
+    public String getTestPage(Model model, @PathVariable Long id) {
+       Test test = newTestService.getTest(id);
+       Answer answer = answerService.getAnswer(id);
+       model.addAttribute("testObject", test);
+       model.addAttribute("answer", answer);
+       return "test";
+    }
 
     @GetMapping("/testQ")
     public String getTestsPageQ(Model model) {

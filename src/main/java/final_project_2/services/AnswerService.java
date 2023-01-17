@@ -44,5 +44,7 @@ public class AnswerService {
         answerRepository.deleteById(id);
     }
 
+//    public Answer get(Integer id) {////////////////////////////////TEST.HTML//////////////////////////////////
+//    return null;}
 }
 

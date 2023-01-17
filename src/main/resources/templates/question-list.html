@@ -31,7 +31,7 @@
                 <a th:text="${(question.test == null) ? 'Assign Test' : ''}"
                    th:href="@{'/test/assign/' + ${question.id}}"></a>
                 <a th:text="${(question.test != null) ? 'Remove Test' : ''}"
-                   th:href="${(question.test != null) ? + '/remove/' + question.test.getId() : ''}"></a>
+                   th:href="${(question.test != null) ? '/remove/' + question.getId() : ''}"></a>
             </td>
         </tr>
         </tbody>

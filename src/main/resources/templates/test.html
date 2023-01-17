@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Question Manager</title>
-<!--    <link rel="stylesheet" type="text/css href="css/style.css">-->
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
-        </head>
+</head>
 <body>
 <div align="center">
     <h1>
@@ -14,14 +12,9 @@
 
     <br/><br/>
 
-
     <a th:href="@{/nik/tests}">Return to Homepage</a><br/>
 
     <br>
-
-    <form action="#" th:action="@{/submitAnswer}" th:object="${answer}" method="post">
-
-    </br>
 
     <table border="1" cellpadding="10">
         <thead>
@@ -33,54 +26,38 @@
         <tbody>
         <tr th:each="question : ${testObject.questions}">
             <table border="1" cellpadding="10">
-            <td th:text="${question.id}"></td>
-            <td th:text="${question.name}"></td>
-                </table>
-        </tr>
-        </tbody>
+                <td th:text="${question.id}"></td>
+                <td th:text="${question.name}"></td>
             </table>
 
             <table border="1" cellpadding="10">
                 <thead>
                 <tr>
                     <th>Answer Id</th>
-<!--                    <th>Answer Name</th>-->
+                    <!--                    <th>Answer Name</th>-->
                     <th>Answer</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="answer : ${question.answers}">
-                    <table border="1" cellpadding="10">
                     <td th:text="${answer.id}"></td>
-<!--                    <td th:text="${answer.name}"></td>-->
-                    <td>
-                        <input type="radio"
-                               th:id="${answer.id}"
-                               th:name="${question.id}"
-                               th:text="${answer.name}"
-                               th:value="${answer.id}"
-                               value="HTML">
-                        <label th:text="'(' + ${answer.id} + ') ' + ${answer.name}"/>
-                    </td>
-                    </table>
-<!--                           th:text="${answer.name}"><br>-->
+                    <!--                    <td th:text="${answer.name}"></td>-->
+                    <td><input type="radio" th:id="'formName' + ${question.id} + '-' + ${answer.id}" th:name="'formName' + ${question.id}" th:text="${answer.name}" value="HTML"></td>
+                    <!--                           th:text="${answer.name}"><br>-->
                 </tr>
-
                 </tbody>
             </table>
 
-            <div  th:each="answer : ${question.answers}" >
-                <input type="radio">
+            <!--            <div  th:each="answer : ${question.answers}" >-->
+            <!--                <input type="radio">-->
 
-            </div>
+            <!--            </div>-->
             <br>
 
         </tr>
         </tbody>
+    </table>
 
-    <tr>
-        <td colspan="2"><button type="submit">Submit</button> </td>
-    </tr>
 </div>
 </body>
 </html>

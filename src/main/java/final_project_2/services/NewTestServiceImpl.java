@@ -52,6 +52,10 @@ public class NewTestServiceImpl implements NewTestService {
                 .collect(Collectors.toList());
     }
 
+//    @Override ////////////////////////////////////TEST.HTML//////////////////////////////////
+//    public Test get(Integer id){
+//        return getAllTests().get(id-1);
+//    }
     @Override
     @Transactional
     public void deleteTest(Long id) {
