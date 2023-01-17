@@ -113,7 +113,7 @@ public class TestController {
     }
 
     @RequestMapping("remove/{id}")
-    public String removeQuestion(@PathVariable(name = "id") Long questionId) {
+    public String removeTest(@PathVariable(name = "id") Long questionId) {
         Question question = questionService.getQuestion(questionId);
         question.setTest(null);
         questionService.saveQuestion(question);

@@ -2,10 +2,12 @@ package final_project_2.controllers;
 
 import final_project_2.models.Answer;
 import final_project_2.models.Question;
+import final_project_2.models.Test;
 import final_project_2.models.User;
 //import final_project_2.services.AnswerService;
 
 import final_project_2.services.AnswerService;
+import final_project_2.services.QuestionService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -25,6 +27,9 @@ public class AnswerController {
 
     @Autowired
     AnswerService answerService;
+
+    @Autowired
+    QuestionService questionService;
 
     @PostMapping(value = "/saveanswer")
     public String saveAnswer(@ModelAttribute("answer") Answer answer) {
@@ -80,4 +85,33 @@ public class AnswerController {
         }
         return "answers";
     }
+
+    @GetMapping("/question/assign/{id}")
+    public String assignQuestion(@PathVariable(name = "id") Long id, Model model) {
+        Answer answer = answerService.getAnswer(id);
+        List<Question> questionList = questionService.getAvailableQuestion();
+        model.addAttribute("answer", answer);
+        model.addAttribute("questionList", questionList);
+        return "assign-question";
+    }
+
+    @PostMapping("question/assign")
+    public String saveQuestionAssignment(@RequestParam("answerId") Long answerId, @RequestParam("questionId") Long questionId) {
+        Question question = questionService.getQuestion(questionId);
+        Answer answer = answerService.getAnswer(answerId);
+//        test.setQuestion(question);
+//        newTestService.saveTest(test);
+        answer.setQuestion(question);
+        answerService.saveAnswer(answer);
+        return "redirect:/answer-list";
+    }
+
+    @RequestMapping("remove/question/{id}")
+    public String removeQuestion(@PathVariable(name = "id") Long answerId) {
+        Answer answer = answerService.getAnswer(answerId);
+        answer.setQuestion(null);
+        answerService.saveAnswer(answer);
+        return"redirect:/answer-list";
+    }
+
 }

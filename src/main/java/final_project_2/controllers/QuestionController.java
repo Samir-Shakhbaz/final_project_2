@@ -72,21 +72,21 @@ public class QuestionController {
         return "redirect:/question-list";
     }
 
-    @GetMapping("/question/assign/{id}")
-    public String assignQuestion(@PathVariable(name = "id") Long id, Model model) {
-        Answer answer = answerService.getAnswer(id);
-        List<Question> questionList = questionService.getAvailableQuestion();
-        model.addAttribute("answer", answer);
-        model.addAttribute("questionList", questionList);
-        return "assign-question";
-    }
-
-    @PostMapping("question/assign")
-    public String saveQuestionAssignment(@RequestParam("answerId") Long answerId, @RequestParam("questionId") Long questionId) {
-        Question question = questionService.getQuestion(questionId);
-        question.setAnswer(answerService.getAnswer(answerId));
-        questionService.saveQuestion(question);
-        return "redirect:/answer-list";
-    }
+//    @GetMapping("/question/assign/{id}")
+//    public String assignQuestion(@PathVariable(name = "id") Long id, Model model) {
+//        Answer answer = answerService.getAnswer(id);
+//        List<Question> questionList = questionService.getAvailableQuestion();
+//        model.addAttribute("answer", answer);
+//        model.addAttribute("questionList", questionList);
+//        return "assign-question";
+//    }
+//
+//    @PostMapping("question/assign")
+//    public String saveQuestionAssignment(@RequestParam("answerId") Long answerId, @RequestParam("questionId") Long questionId) {
+//        Question question = questionService.getQuestion(questionId);
+//        question.setAnswer(answerService.getAnswer(answerId));
+//        questionService.saveQuestion(question);
+//        return "redirect:/answer-list";
+//    }
 
 }
