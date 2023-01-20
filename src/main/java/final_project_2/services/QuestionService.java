@@ -39,10 +39,6 @@ public class QuestionService {
                 .collect(Collectors.toList());
     }
 
-//    public List<Question> getAvailableQuestion() {
-//        return getAllQuestions().stream().filter(c -> c.getTest() == null)
-//                .collect(Collectors.toList());
-//    }
 
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);

@@ -22,6 +22,9 @@ public class NewTestServiceImpl implements NewTestService {
     TestRepository testRepository;
     @Autowired
     QuestionRepository questionRepository;
+    @Autowired
+    QuestionService questionService;
+
 
     @Override
     public List<Test> getAllTests() {
@@ -51,6 +54,8 @@ public class NewTestServiceImpl implements NewTestService {
         return getAllTests().stream().filter(c -> c.getQuestion() == null)
                 .collect(Collectors.toList());
     }
+
+
 
 //    @Override ////////////////////////////////////TEST.HTML//////////////////////////////////
 //    public Test get(Integer id){

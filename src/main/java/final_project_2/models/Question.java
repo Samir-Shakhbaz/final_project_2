@@ -22,18 +22,19 @@ public class Question {
     private Long id;
     private String name;
 
-    public Question(Long id, String name, List<Answer> answers) {
-        this.id = id;
-        this.name = name;
-//        this.answers = answers;
-    }
+//    @OneToOne
+//    @JoinColumn (name = "test_id")
+//    private Test test;
 
-    @OneToOne
-    @JoinColumn (name = "test_id")
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answer;
+
+    @ManyToOne(
+//            cascade = CascadeType.ALL,
+            optional = true
+    )
     private Test test;
 
-    @OneToOne(mappedBy = "question")
-    private Answer answer;
 
     @Override
     public String toString() { return ("Question# " + id + " " + " " + name);}

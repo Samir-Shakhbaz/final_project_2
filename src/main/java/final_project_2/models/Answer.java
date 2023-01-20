@@ -16,16 +16,18 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    long id;
+    Long id;
     String name;
 
-    public Answer(long id, String name) {
+    public Answer(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    @OneToOne
-    @JoinColumn (name = "question_id")
+    @ManyToOne (
+//            cascade = CascadeType.ALL,
+            optional = true
+    )
     private Question question;
 
 }

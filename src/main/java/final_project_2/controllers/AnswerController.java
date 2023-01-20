@@ -89,7 +89,7 @@ public class AnswerController {
     @GetMapping("/question/assign/{id}")
     public String assignQuestion(@PathVariable(name = "id") Long id, Model model) {
         Answer answer = answerService.getAnswer(id);
-        List<Question> questionList = questionService.getAvailableQuestion();
+        List<Question> questionList = questionService.getAllQuestions();
         model.addAttribute("answer", answer);
         model.addAttribute("questionList", questionList);
         return "assign-question";

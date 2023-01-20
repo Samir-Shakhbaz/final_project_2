@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Controller
 //@RestController
@@ -94,16 +97,23 @@ public class TestController {
 
     @GetMapping("/test/assign/{id}")
     public String assignTest(@PathVariable(name = "id") Long id, Model model) {
-        Question question = questionService.getQuestion(id);
-        List<Test> testList = newTestService.getAvailableTest();
-        model.addAttribute("question", question);
-        model.addAttribute("testList", testList);
-        return "assign-test";
+       Question question = questionService.getQuestion(id);
+       List<Test> testList = newTestService.getAllTests();
+//        for(int i =0; i< questions.size(); i++){
+//            Question question = questionService.getQuestion(id);
+//        }
+       model.addAttribute("question", question);
+       model.addAttribute("testList", testList);
+       return "assign-test";
     }
 
     @PostMapping("test/assign")
     public String saveTestAssignment(@RequestParam("questionId") Long questionId, @RequestParam("testId") Long testId) {
         Test test = newTestService.getTest(testId);
+        test.getQuestion().size();
+        if(test.getQuestion().size()>10){
+            System.out.println("error");
+        }
         Question question = questionService.getQuestion(questionId);
 //        test.setQuestion(question);
 //        newTestService.saveTest(test);

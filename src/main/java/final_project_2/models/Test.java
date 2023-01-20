@@ -3,6 +3,7 @@ package final_project_2.models;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
@@ -22,14 +23,16 @@ public class Test {
     private Long id;
     private String name;
 
-    @OneToOne(mappedBy = "test")
-    private Question question;
+//
 
-        public Test(Long id, String name, List<Question> questions) {
-        this.id = id;
-        this.name = name;
-        this.question = question;
-    }
+    @OneToMany(mappedBy="test")
+//    @JoinColumn(name = "question_id")
+    private List<Question> question;
+
+
+//    @OneToOne(mappedBy = "test")
+//    private Question question;
+//
 
 //    @Override
 //    public String toString() {
