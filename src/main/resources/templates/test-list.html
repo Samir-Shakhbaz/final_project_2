@@ -17,6 +17,8 @@
                 <th>Test ID</th>
                 <th>Test Name</th>
 <!--                <th>Question Id</th>-->
+                <th>Question List</th>
+                <th>Test Link</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -24,7 +26,18 @@
             <tr th:each="test : ${testList}">
                 <td th:text="${test.id}">Test ID</td>
                 <td th:text="${test.name}">Test Name</td>
+                <td>Question List:
+                    <select class="form-select" name="questionId">
+<!--                        <option th:if="${questionList.isEmpty()}">None Available</option>-->
+                        <option th:each="question : ${test.questions}" th:value="${question.id}" th:text="${question.toString()}"></option>
+                    </select>
+                </td>
+<!--            </tr>-->
+
 <!--                <td th:text="${test.question != null} ? ${test.question.id}"></td>-->
+                <td>
+                    <a th:href="@{'/nik/tests/' + ${test.id}}">Link</a>
+                </td>
                 <td>    <!-- actions -->
                     <a th:href="@{'/edittest/' + ${test.id}}">Edit</a>
                     <a th:href="@{'/deletetest/' + ${test.id}}">Delete</a>

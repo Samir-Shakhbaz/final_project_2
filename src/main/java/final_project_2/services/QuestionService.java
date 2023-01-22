@@ -1,10 +1,7 @@
 package final_project_2.services;
 
-import final_project_2.models.Answer;
 import final_project_2.models.Question;
-import final_project_2.models.Test;
 import final_project_2.repositories.QuestionRepository;
-import final_project_2.repositories.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +32,7 @@ public class QuestionService {
     }
 
     public List<Question> getAvailableQuestion() {
-        return getAllQuestions().stream().filter(c -> c.getAnswer() == null)
+        return getAllQuestions().stream().filter(c -> c.getAnswers() == null)
                 .collect(Collectors.toList());
     }
 

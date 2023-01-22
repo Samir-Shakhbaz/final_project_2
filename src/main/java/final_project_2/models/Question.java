@@ -1,10 +1,8 @@
 package final_project_2.models;
 
 import lombok.*;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +25,7 @@ public class Question {
 //    private Test test;
 
     @OneToMany(mappedBy = "question")
-    private List<Answer> answer;
+    private List<Answer> answers;
 
     @ManyToOne(
 //            cascade = CascadeType.ALL,
@@ -37,7 +35,7 @@ public class Question {
 
 
     @Override
-    public String toString() { return ("Question# " + id + " " + " " + name);}
+    public String toString() { return (name + " (id-" + id + ")");}
 
     //    @OneToMany
 //    private List <Answer> answers;

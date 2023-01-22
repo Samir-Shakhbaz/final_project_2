@@ -27,7 +27,7 @@ public class Test {
 
     @OneToMany(mappedBy="test")
 //    @JoinColumn(name = "question_id")
-    private List<Question> question;
+    private List<Question> questions;
 
 
 //    @OneToOne(mappedBy = "test")
@@ -43,7 +43,7 @@ public class Test {
 //    }
 
     @Override
-    public String toString() { return ("Test#" + id + " " + " " + name);}
+    public String toString() { return (name + " (id-" + id + ")");}
 
 }
 

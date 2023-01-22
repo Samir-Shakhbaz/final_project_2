@@ -51,7 +51,7 @@ public class NewTestServiceImpl implements NewTestService {
     }
 
     public List<Test> getAvailableTest() {
-        return getAllTests().stream().filter(c -> c.getQuestion() == null)
+        return getAllTests().stream().filter(c -> c.getQuestions() == null)
                 .collect(Collectors.toList());
     }
 

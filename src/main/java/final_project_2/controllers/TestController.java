@@ -110,8 +110,8 @@ public class TestController {
     @PostMapping("test/assign")
     public String saveTestAssignment(@RequestParam("questionId") Long questionId, @RequestParam("testId") Long testId) {
         Test test = newTestService.getTest(testId);
-        test.getQuestion().size();
-        if(test.getQuestion().size()>10){
+        test.getQuestions().size();
+        if(test.getQuestions().size()>10){
             System.out.println("error");
         }
         Question question = questionService.getQuestion(questionId);
@@ -149,19 +149,21 @@ public class TestController {
 
     @GetMapping("/nik/tests/{id}")
     public String getTestPage(Model model, @PathVariable Long id) {
-       Test test = newTestService.getTest(id);
-       Answer answer = answerService.getAnswer(id);
-       model.addAttribute("testObject", test);
-       model.addAttribute("answer", answer);
-       return "test";
+        Test test = newTestService.getTest(id); // == new Test(1l, "Test 1", questions())
+
+        model.addAttribute("testObject", test);
+
+        return "test";
     }
 
-    @GetMapping("/testQ")
-    public String getTestsPageQ(Model model) {
-        List<Test> tests = newTestService.getAllTests();
-        model.addAttribute("allTests", tests);
-        return "testQ";
-    }
 }
+
+//    @GetMapping("/testQ")
+//    public String getTestsPageQ(Model model) {
+//        List<Test> tests = newTestService.getAllTests();
+//        model.addAttribute("allTests", tests);
+//        return "testQ";
+//    }
+
 
 

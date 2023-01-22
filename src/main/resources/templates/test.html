@@ -21,42 +21,62 @@
         <tr>
             <th>Question Id</th>
             <th>Question</th>
+            <th>Answer Id</th>
+<!--            <th>Answer</th>-->
         </tr>
         </thead>
         <tbody>
+
         <tr th:each="question : ${testObject.questions}">
-            <table border="1" cellpadding="10">
+
+
                 <td th:text="${question.id}"></td>
                 <td th:text="${question.name}"></td>
+                <td><input type="checkbox" th:each="answer : ${question.answers}" th:text="${answer.id + ': ' + answer.name}" value="HTML"></td>
+<!--                <td th:text="${question.name}"></td>-->
+
+
+<!--                    &lt;!&ndash;                    <td th:text="${answer.name}"></td>&ndash;&gt;-->
+<!--                    <td><input type="radio" th:id="'formName' + ${question.id} + '-' + ${answer.id}" th:name="'formName' + ${question.id}" th:text="${answer.name}" value="HTML"></td>-->
+<!--                    &lt;!&ndash;                           th:text="${answer.name}"><br>&ndash;&gt;-->
+<!--                </tr>-->
+        </tr>
+        </tbody>
             </table>
 
-            <table border="1" cellpadding="10">
-                <thead>
-                <tr>
-                    <th>Answer Id</th>
-                    <!--                    <th>Answer Name</th>-->
-                    <th>Answer</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="answer : ${question.answers}">
-                    <td th:text="${answer.id}"></td>
-                    <!--                    <td th:text="${answer.name}"></td>-->
-                    <td><input type="radio" th:id="'formName' + ${question.id} + '-' + ${answer.id}" th:name="'formName' + ${question.id}" th:text="${answer.name}" value="HTML"></td>
-                    <!--                           th:text="${answer.name}"><br>-->
-                </tr>
-                </tbody>
-            </table>
+
+        <fieldset>
+
+            <div>
+                <input type="radio" id="contactChoice1" name="contact" value="email" />
+                <label for="contactChoice1">Email</label>
+                <input type="radio" id="contactChoice2" name="contact" value="phone" />
+                <label for="contactChoice2">Phone</label>
+                <input type="radio" id="contactChoice3" name="contact" value="mail" />
+                <label for="contactChoice3">Mail</label>
+            </div>
+
+        </fieldset>
+
+
+<!--            <table border="1" cellpadding="10">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Answer Id</th>-->
+<!--                    &lt;!&ndash;                    <th>Answer Name</th>&ndash;&gt;-->
+<!--                    <th>Answer</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+
+<!--                </tbody>-->
+<!--            </table>-->
 
             <!--            <div  th:each="answer : ${question.answers}" >-->
             <!--                <input type="radio">-->
 
             <!--            </div>-->
             <br>
-
-        </tr>
-        </tbody>
-    </table>
 
 </div>
 </body>

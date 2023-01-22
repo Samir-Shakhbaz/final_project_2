@@ -17,7 +17,7 @@
     <tr>
       <th>Answer ID</th>
       <th>Answer Name</th>
-      <th>Question Id</th>
+      <th>Question name + (id)</th>
       <th>Actions</th>
     </tr>
     </thead>
@@ -25,7 +25,7 @@
     <tr th:each="answer : ${answerList}">
       <td th:text="${answer.id}">Answer ID</td>
       <td th:text="${answer.name}">Answer Name</td>
-      <td th:text="${answer.question}">Question Id</td>
+      <td th:text="${answer.question}">Question name + (id)</td>
       <td>    <!-- actions -->
         <a th:href="@{'/editanswer/' + ${answer.id}}">Edit</a>
         <a th:href="@{'/deleteanswer/' + ${answer.id}}">Delete</a>
