@@ -50,10 +50,10 @@ public class NewTestServiceImpl implements NewTestService {
                 .orElse(null);
     }
 
-    public List<Test> getAvailableTest() {
-        return getAllTests().stream().filter(c -> c.getQuestions() == null)
-                .collect(Collectors.toList());
-    }
+//    public List<Test> getAvailableTest() {
+//        return getAllTests().stream().filter(c -> c.getQuestions() == null)
+//                .collect(Collectors.toList());
+//    }
 
 
 

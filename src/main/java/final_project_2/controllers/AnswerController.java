@@ -23,6 +23,7 @@ import java.util.List;
 
 @Controller
 @Component
+@RequestMapping("/answer")
 public class AnswerController {
 
     @Autowired
@@ -31,27 +32,27 @@ public class AnswerController {
     @Autowired
     QuestionService questionService;
 
-    @PostMapping(value = "/saveanswer")
+    @PostMapping(value = "/save")
     public String saveAnswer(@ModelAttribute("answer") Answer answer) {
         answerService.saveAnswer(answer);
-        return "redirect:/answer-list";
+        return "redirect:/answer/list";
     }
 
-    @GetMapping("/answer-list")
+    @GetMapping("/list")
     public String showAnswerListPage(Model model) {
         List<Answer> answerList = answerService.getAllAnswers();
         model.addAttribute("answerList", answerList);
         return "answer-list";
     }
 
-    @GetMapping("/new-answer")
+    @GetMapping("/new")
     public String ShowNewAnswerPage(Model model) {
         Answer answer = new Answer();
         model.addAttribute("answer", answer);
         return "new-answer";
     }
 
-    @GetMapping("/editanswer/{id}")
+    @GetMapping("/edit/{id}")
     public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit-answer");
         Answer answer = answerService.getAnswer(id);
@@ -59,7 +60,7 @@ public class AnswerController {
         return mav;
     }
 
-    @PostMapping("/updateanswer/{id}")
+    @PostMapping("/update/{id}")
     public String updateAnswer(@PathVariable(name = "id") Long id, @ModelAttribute("answer") Answer answer, Model model) {
         if (!id.equals(answer.getId())) {
             model.addAttribute("message",
@@ -68,20 +69,21 @@ public class AnswerController {
             return "error-page";
         }
         answerService.saveAnswer(answer);
-        return "redirect:/answer-list";
+        return "redirect:/answer/list";
     }
 
-    @RequestMapping("/deleteanswer/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteAnswer(@PathVariable(name = "id") Long id) {
         answerService.deleteAnswer(id);
-        return "redirect:/answer-list";
+        return "redirect:/answer/list";
     }
 
-    @PostMapping(value = "/submitAnswer", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PostMapping(value = "/submit", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public String saveAnswer(@RequestParam MultiValueMap<String, String> values, HttpServletRequest request) {
-
         for (String questionId : values.keySet()) {
-            System.out.println(values.get(questionId).get(0));
+            for (String answerId : values.get(questionId)) {
+                System.out.println("hello " + questionId + "-" + answerId);
+            }
         }
         return "answers";
     }
@@ -103,17 +105,16 @@ public class AnswerController {
 //        newTestService.saveTest(test);
         answer.setQuestion(question);
         answerService.saveAnswer(answer);
-        return "redirect:/answer-list";
+        return "redirect:/answer/list";
     }
 
-    @RequestMapping("remove/question/{id}")
+    @RequestMapping("/question/remove/{id}")
     public String removeQuestion(@PathVariable(name = "id") Long answerId) {
         Answer answer = answerService.getAnswer(answerId);
         answer.setQuestion(null);
         answerService.saveAnswer(answer);
-        return"redirect:/answer-list";
+        return"redirect:/answer/list";
     }
-
 
 
 }

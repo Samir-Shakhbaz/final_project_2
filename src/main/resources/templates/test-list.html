@@ -36,23 +36,23 @@
 
 <!--                <td th:text="${test.question != null} ? ${test.question.id}"></td>-->
                 <td>
-                    <a th:href="@{'/nik/tests/' + ${test.id}}">Link</a>
+                    <a th:href="@{'/test/nik/tests/' + ${test.id}}">Link</a>
                 </td>
                 <td>    <!-- actions -->
-                    <a th:href="@{'/edittest/' + ${test.id}}">Edit</a>
-                    <a th:href="@{'/deletetest/' + ${test.id}}">Delete</a>
+                    <a th:href="@{'/test/edit/' + ${test.id}}">Edit</a>
+                    <a th:href="@{'/test/delete/' + ${test.id}}">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
             </br>
-                <a th:href="@{/new-test}">Create new test</a>
+                <a th:href="@{/test/new}">Create new test</a>
             </br>
             </br>
-                <a th:href="@{/question-list}">Go to question-list</a>
+                <a th:href="@{/question/list}">Go to question-list</a>
             </br>
             </br>
-                <a th:href="@{/answer-list}">Go to answer-list</a>
+                <a th:href="@{/answer/list}">Go to answer-list</a>
             </br>
             </br>
                 <a th:href="@{/}">Return to homepage</a>

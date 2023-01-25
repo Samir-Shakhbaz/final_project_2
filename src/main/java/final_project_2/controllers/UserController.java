@@ -26,11 +26,11 @@ public class UserController {
         this.userService = userService; //WHY DO ME NEED THIS?
     }
 
-    @GetMapping("/createaccount")
+    @GetMapping("/create-account")
     public String createaccount(Model model) {
         User user = new User();
         model.addAttribute("user", user);
-        return "createaccount";
+        return "create-account";
     }
 
     @PostMapping(value = "/save")
@@ -52,10 +52,7 @@ public class UserController {
         return "deleted";
     }
 
-    @GetMapping("/about")
-        public String about(){
-        return "about";
-    }
+
 
 //    @RequestMapping("/delete/{id}") //FOR ADMINISTRATOR
 //    public String deleteUser(@PathVariable(name = "id") Long id) {

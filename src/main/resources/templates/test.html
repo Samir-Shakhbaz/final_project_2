@@ -12,11 +12,12 @@
 
     <br/><br/>
 
-    <a th:href="@{/nik/tests}">Return to Homepage</a><br/>
+    <a th:href="@{/test/nik/tests}">Return to Homepage</a><br/>
 
     <br>
-
+    <form action="/answer/submit" method="post">
     <table border="1" cellpadding="10">
+
         <thead>
         <tr>
             <th>Question Id</th>
@@ -32,7 +33,11 @@
 
                 <td th:text="${question.id}"></td>
                 <td th:text="${question.name}"></td>
-                <td><input type="checkbox" th:each="answer : ${question.answers}" th:text="${answer.id + ': ' + answer.name}" value="HTML"></td>
+                <td><input type="checkbox" th:each="answer : ${question.answers}"
+                           th:text="${answer.id + ': ' + answer.name}"
+                           th:id="${answer.id}"
+                           th:name="${question.id}"
+                           th:value="${answer.id}" value="HTML"></td>
 <!--                <td th:text="${question.name}"></td>-->
 
 
@@ -42,8 +47,12 @@
 <!--                </tr>-->
         </tr>
         </tbody>
-            </table>
 
+            </table>
+    <tr>
+        <td colspan="2"><button type="submit">Submit</button> </td>
+    </tr>
+    </form>
 
         <fieldset>
 

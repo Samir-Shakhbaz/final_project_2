@@ -20,7 +20,7 @@ public interface NewTestService {
 
     void deleteTest(Long id);
 
-    public List<Test> getAvailableTest();
+//    public List<Test> getAvailableTest();
 
 //    Test get(Integer id);//////////////////////////TEST.HTML///////////////////////////////
 }

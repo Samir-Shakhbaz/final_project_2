@@ -27,7 +27,7 @@
             <td th:text="${test.id}"></td>
             <td th:text="${test.name}"></td>
             <td>
-                <a th:href="@{'/nik/tests/' + ${test.id}}">Link</a>
+                <a th:href="@{'/test/nik/tests/' + ${test.id}}">Link</a>
             </td>
         </tr>
         </tbody>
@@ -35,20 +35,20 @@
     </br>
     <a th:href="@{/login}">Log in</a>
     </br></br>
-    <a th:href="@{/createaccount}">Create an account</a>
+    <a th:href="@{/create-account}">Create an account</a>
     </br></br>
     </br>
     <a th:href="@{/logout}">Log out</a>
     </br></br>
     </br>
     </br>
-    <a th:href="@{/test-list}">Go to test-list</a>
+    <a th:href="@{/test/list}">Go to test-list</a>
     </br>
     </br>
-    <a th:href="@{/question-list}">Go to question-list</a>
+    <a th:href="@{/question/list}">Go to question-list</a>
     </br>
     </br>
-    <a th:href="@{/answer-list}">Go to answer-list</a>
+    <a th:href="@{/answer/list}">Go to answer-list</a>
     </br>
     </br>
     <form id="form">

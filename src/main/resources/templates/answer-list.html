@@ -12,7 +12,7 @@
   <h1>Answer List</h1>
 
   <br/><br/>
-  <table border="1" cellpadding="10">
+  <table border="1" cellpadding="10" class="">
     <thead>
     <tr>
       <th>Answer ID</th>
@@ -27,24 +27,24 @@
       <td th:text="${answer.name}">Answer Name</td>
       <td th:text="${answer.question}">Question name + (id)</td>
       <td>    <!-- actions -->
-        <a th:href="@{'/editanswer/' + ${answer.id}}">Edit</a>
-        <a th:href="@{'/deleteanswer/' + ${answer.id}}">Delete</a>
+        <a th:href="@{'/answer/edit/' + ${answer.id}}">Edit</a>
+        <a th:href="@{'/answer/delete/' + ${answer.id}}">Delete</a>
         <a th:text="${(answer.question == null) ? 'Assign Question' : ''}"
-           th:href="@{'/question/assign/' + ${answer.id}}"></a>
+           th:href="@{'/answer/question/assign/' + ${answer.id}}"></a>
         <a th:text="${(answer.question != null) ? 'Remove Question' : ''}"
-           th:href="${(answer.question != null) ? '/remove/question/' + answer.getId() : ''}"></a>
+           th:href="${(answer.question != null) ? '/answer/question/remove/' + answer.getId() : ''}"></a>
       </td>
     </tr>
     </tbody>
   </table>
     </br>
-      <a th:href="@{/new-answer}">Create new answer</a>
+      <a th:href="@{/answer/new}">Create new answer</a>
     </br>
     </br>
-      <a th:href="@{/test-list}">Go to test-list</a>
+      <a th:href="@{/test/list}">Go to test-list</a>
     </br>
     </br>
-      <a th:href="@{/question-list}">Go to question-list</a>
+      <a th:href="@{/question/list}">Go to question-list</a>
     </br>
     </br>
       <a th:href="@{/}">Return to homepage</a>

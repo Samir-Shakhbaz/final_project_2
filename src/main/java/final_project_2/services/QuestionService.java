@@ -31,10 +31,10 @@ public class QuestionService {
                 .orElse(null);
     }
 
-    public List<Question> getAvailableQuestion() {
-        return getAllQuestions().stream().filter(c -> c.getAnswers() == null)
-                .collect(Collectors.toList());
-    }
+//    public List<Question> getAvailableQuestion() {
+//        return getAllQuestions().stream().filter(c -> c.getAnswers() == null)
+//                .collect(Collectors.toList());
+//    }
 
 
     public void deleteQuestion(Long id) {

@@ -8,7 +8,7 @@
 <div align="center">
     <h1>Create New Question</h1>
     <br />
-    <form action="#" th:action="@{/savequestion}" th:object="${question}" method="post">
+    <form action="#" th:action="@{/question/save}" th:object="${question}" method="post">
 
         <table border="0" cellpadding="10">
 <!--            <tr>-->
@@ -29,13 +29,13 @@
         <tr>
     </form>
         </br>
-            <a th:href="@{/test-list}">Go to test-list</a>
+            <a th:href="@{/test/list}">Go to test-list</a>
         </br>
         </br>
-            <a th:href="@{/question-list}">Go to question-list</a>
+            <a th:href="@{/question/list}">Go to question-list</a>
         </br>
         </br>
-            <a th:href="@{/answer-list}">Go to answer-list</a>
+            <a th:href="@{/answer/list}">Go to answer-list</a>
         </br>
         </br>
             <a th:href="@{/}">Return to homepage</a>

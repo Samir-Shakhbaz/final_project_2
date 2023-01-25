@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("/question")
 public class QuestionController {
 
     @Autowired
@@ -26,27 +27,27 @@ public class QuestionController {
     @Autowired
     private AnswerService answerService;
 
-    @GetMapping("/new-question")
+    @GetMapping("/new")
     public String showNewQuestionPage(Model model) {
         Question question = new Question();
         model.addAttribute("question", question);
         return "new-question";
     }
 
-    @PostMapping(value = "/savequestion")
+    @PostMapping(value = "/save")
     public String saveQuestion(@ModelAttribute("question") Question question) {
         questionService.saveQuestion(question);
-        return "redirect:/question-list";
+        return "redirect:/question/list";
     }
 
-    @GetMapping("/question-list")
+    @GetMapping("/list")
     public String showQuestionListPage(Model model) {
         List<Question> questionList = questionService.getAllQuestions();
         model.addAttribute("questionList", questionList);
         return "question-list";
     }
 
-    @GetMapping("/editquestion/{id}")
+    @GetMapping("/edit/{id}")
     public ModelAndView showEditQuestionPage(@PathVariable(name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView("edit-question");
         Question question = questionService.getQuestion(id);
@@ -54,7 +55,7 @@ public class QuestionController {
         return modelAndView;
     }
 
-    @PostMapping("/updatequestion/{id}")
+    @PostMapping("/update/{id}")
     public String updateQuestion(@PathVariable(name = "id") Long id, @ModelAttribute("question") Question question, Model model) {
         if (!id.equals(question.getId())) {
             model.addAttribute("message",
@@ -63,13 +64,13 @@ public class QuestionController {
             return "error-page";
         }
         questionService.saveQuestion(question);
-        return "redirect:/question-list";
+        return "redirect:/question/list";
     }
 
-    @RequestMapping("/deletequestion/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteQuestion(@PathVariable(name = "id") Long id) {
         questionService.deleteQuestion(id);
-        return "redirect:/question-list";
+        return "redirect:/question/list";
     }
 
 //    @GetMapping("/question/assign/{id}")

@@ -28,8 +28,8 @@
             <td th:text="${question.test}">Test Id</td>
             <td></td>
             <td>    <!-- actions -->
-                <a th:href="@{'/editquestion/' + ${question.id}}">Edit</a>
-                <a th:href="@{'/deletequestion/' + ${question.id}}">Delete</a>
+                <a th:href="@{'/question/edit/' + ${question.id}}">Edit</a>
+                <a th:href="@{'/question/delete/' + ${question.id}}">Delete</a>
                 <a th:text="${(question.test == null) ? 'Assign Test' : ''}"
                    th:href="@{'/test/assign/' + ${question.id}}"></a>
                 <a th:text="${(question.test != null) ? 'Remove Test' : ''}"
@@ -39,13 +39,13 @@
         </tbody>
     </table>
     </br>
-    <a th:href="@{/new-question}">Create new question</a>
+    <a th:href="@{/new}">Create new question</a>
     </br>
     </br>
-    <a th:href="@{/test-list}">Go to test-list</a>
+    <a th:href="@{/test/list}">Go to test-list</a>
     </br>
     </br>
-    <a th:href="@{/answer-list}">Go to answer-list</a>
+    <a th:href="@{/answer/list}">Go to answer-list</a>
     </br>
     </br>
         <a th:href="@{/}">Return to homepage</a>

@@ -9,7 +9,7 @@
     <div align="center">
         <h1>Create New Test</h1>
     <br />
-        <form action="#" th:action="@{/savetest}" th:object="${test}" method="post">
+        <form action="#" th:action="@{/test/save}" th:object="${test}" method="post">
 
             <table border="0" cellpadding="10">
 <!--                <tr>-->
@@ -27,13 +27,13 @@
             </table>
         </form>
             </br>
-                <a th:href="@{/test-list}">Go to test-list</a>
+                <a th:href="@{/test/list}">Go to test-list</a>
             </br>
             </br>
-                <a th:href="@{/question-list}">Go to question-list</a>
+                <a th:href="@{/question/list}">Go to question-list</a>
             </br>
             </br>
-                <a th:href="@{/answer-list}">Go to answer-list</a>
+                <a th:href="@{/answer/list}">Go to answer-list</a>
             </br>
             </br>
                 <a th:href="@{/}">Return to homepage</a>

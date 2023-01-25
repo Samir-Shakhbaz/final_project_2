@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.stream;
 
 @Controller
+@RequestMapping("/test")
 //@RestController
 public class TestController {
 
@@ -42,27 +43,27 @@ public class TestController {
         this.userService = userService;
     }
 
-    @GetMapping("/test-list")
+    @GetMapping("/list")
     public String vewTestList(@NotNull Model model) {
         final List<Test> testList = newTestService.getAllTests();
         model.addAttribute("testList", testList);
         return "test-list";
     }
 
-    @PostMapping("/savetest")
+    @PostMapping("/save")
     public String saveTest(@ModelAttribute("test") Test test) {
         newTestService.saveTest(test);
         return "redirect:/test-list";
     }
 
-    @GetMapping("/new-test")
+    @GetMapping("/new")
     public String ShowNewTestPage(Model model) {
         Test test = new Test();
         model.addAttribute("test", test);
         return "new-test";
     }
 
-    @GetMapping("/edittest/{id}")
+    @GetMapping("/edit/{id}")
     public ModelAndView showEditTestPage(@PathVariable(name = "id") Long id) {
         ModelAndView modelAndView = new ModelAndView("edit-test");
         Test test = newTestService.getTest(id);
@@ -70,7 +71,7 @@ public class TestController {
         return modelAndView;
     }
 
-    @PostMapping("/updatetest/{id}")
+    @PostMapping("/update/{id}")
     public String updateTest(@PathVariable(name = "id") Long id, @ModelAttribute("test") Test test, Model model) {
         if (!id.equals(test.getId())) {
             model.addAttribute("message",
@@ -82,20 +83,13 @@ public class TestController {
             return "redirect:/test-list";
     }
 
-    @RequestMapping("/deletetest/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteTest(@PathVariable(name = "id") Long id) {
         newTestService.deleteTest(id);
         return "redirect:/test-list";
     }
 
-    @GetMapping("/")
-    public String vewHomePage(Model model) {
-        final List<Test> testList = newTestService.getAllTests();
-        model.addAttribute("testList", testList);
-        return "home";
-    }
-
-    @GetMapping("/test/assign/{id}")
+    @GetMapping("/assign/{id}")
     public String assignTest(@PathVariable(name = "id") Long id, Model model) {
        Question question = questionService.getQuestion(id);
        List<Test> testList = newTestService.getAllTests();
@@ -107,7 +101,7 @@ public class TestController {
        return "assign-test";
     }
 
-    @PostMapping("test/assign")
+    @PostMapping("assign")
     public String saveTestAssignment(@RequestParam("questionId") Long questionId, @RequestParam("testId") Long testId) {
         Test test = newTestService.getTest(testId);
         test.getQuestions().size();
@@ -119,7 +113,7 @@ public class TestController {
 //        newTestService.saveTest(test);
         question.setTest(test);
         questionService.saveQuestion(question);
-        return "redirect:/question-list";
+        return "redirect:/question/list";
     }
 
     @RequestMapping("remove/{id}")
@@ -128,16 +122,6 @@ public class TestController {
         question.setTest(null);
         questionService.saveQuestion(question);
         return"redirect:/question-list";
-    }
-
-    @GetMapping("/hello")
-    public String greeting() {
-        return "Hello and welcome!";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/nik/tests")

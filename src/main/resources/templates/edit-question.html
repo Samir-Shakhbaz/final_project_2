@@ -8,7 +8,7 @@
 <div align="center">
     <h1>Edit Question</h1>
     <br />
-    <form action="#" th:action="@{'/updatequestion/' + ${question.id}}" th:object="${question}"
+    <form action="#" th:action="@{'/question/update/' + ${question.id}}" th:object="${question}"
           method="post">
         <table border="0" cellpadding="10">
             <tr>
