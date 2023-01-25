@@ -6,11 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.NameNotFoundException;
 import java.util.List;
 
 @Service
@@ -35,8 +34,12 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public void deleteUser(Long id) { userRepository.deleteById(id); }
 
+
+    @Override
+    public User loadUserByName(String name) { return userRepository.findByName(name); }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByName(username);
+        return null;
     }
 }

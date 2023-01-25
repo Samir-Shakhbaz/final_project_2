@@ -15,6 +15,21 @@ public class HomeController {
     @Autowired
     NewTestService newTestService;
 
+    @GetMapping("/home")
+    public String homePage() {
+        return "authorization-home";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "authorization-admin";
+    }
+
+    @GetMapping("/user")
+    public String user() {
+        return "authorization-user";
+    }
+
     @GetMapping("/hello")
     public String greeting() {
         return "Hello and welcome!";

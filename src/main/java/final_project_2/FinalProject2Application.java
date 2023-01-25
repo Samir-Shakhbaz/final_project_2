@@ -1,8 +1,12 @@
 package final_project_2;
 
+import final_project_2.configs.Authority;
+import final_project_2.configs.AuthorityEnum;
+import final_project_2.configs.AuthorityRepo;
 import final_project_2.models.Test;
 import final_project_2.models.User;
 //import final_project_2.services.TestService;
+import final_project_2.repositories.UserRepository;
 import final_project_2.services.NewTestService;
 import final_project_2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +33,64 @@ public class FinalProject2Application implements CommandLineRunner {
     @Autowired
     NewTestService newTestService;
 
+    @Autowired
+    AuthorityRepo authorityRepo;
+
+    @Autowired
+    UserRepository userRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(FinalProject2Application.class, args);
     }
 
-
     @Override
     public void run(String... args) throws Exception {
 
-        if (userService.getAllUsers().isEmpty()) {
-            userService.saveUser(
-                    new User("user", passwordEncoder.encode("user"))
+        Authority userAuth = Authority.builder().authority(AuthorityEnum.ROLE_USER).build();
+        Authority adminAuth = Authority.builder().authority(AuthorityEnum.ROLE_ADMIN).build();
+
+
+        if (authorityRepo.findAll().isEmpty()) {
+            authorityRepo.saveAll(Arrays.asList(userAuth,adminAuth));
+        }
+
+
+        if (userRepository.findAll().isEmpty()) {
+            userRepository.saveAll(
+                    Arrays.asList(
+
+                            new User("user", passwordEncoder.encode("user"), Collections.singletonList(userAuth)),
+                            new User("admin", passwordEncoder.encode("admin"), Arrays.asList(adminAuth, userAuth))
+                    )
             );
         }
     }
 }
+
+//    @Autowired
+//    UserService userService;
+//
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
+//
+//    @Autowired
+//    NewTestService newTestService;
+//
+//    public static void main(String[] args) {
+//        SpringApplication.run(FinalProject2Application.class, args);
+//    }
+//
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//
+//        if (userService.getAllUsers().isEmpty()) {
+//            userService.saveUser(
+//                    new User("user", passwordEncoder.encode("user"))
+//            );
+//        }
+//    }
+
 
 
 
